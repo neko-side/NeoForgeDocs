@@ -1,28 +1,28 @@
 # Getting Started with NeoForge
 
-This section includes information about how to set up a NeoForge workspace, and how to run and test your mod.
+本文主要关于如何设置你的 Mod 开发环境, 以及如何运行与测试你的 Mod.
 
-## Prerequisites
+## 前置条件
 
-- Familiarity with the Java programming language, specifically its object-oriented, polymorphic, generic, and functional features.
-- An installation of the Java 21 Development Kit (JDK) and 64-bit Java Virtual Machine (JVM). NeoForge recommends and officially supports the [Microsoft builds of OpenJDK][jdk], but any other JDK should work as well.
+- 熟悉 Java 编程语言, specifically its object-oriented, polymorphic, generic, and functional features.
+- An installation of the Java 21 Development Kit (JDK) and 64-bit Java Virtual Machine (JVM). NeoForge 推荐且官方支持 [Microsoft builds of OpenJDK][jdk], 但是任何其他 JDK 也能够正常工作.
 
 :::caution
-Make sure you are using a 64-bit JVM. One way of checking is to run `java -version` in a terminal. Minecraft does not support 32-bit JVMs.
+确保你正在使用 64 位的 JVM. 一种检查方式是在终端中输入 `java -version`. Minecraft 不支持 32 位的 JVM.
 :::
 
-- Familiarity with an Integrated Development Environment (IDE) of your choice.
-      - NeoForge officially supports [IntelliJ IDEA][intellij] and [Eclipse][eclipse], both of which have integrated Gradle support. However, any IDE can be used, ranging from Netbeans or Visual Studio Code to Vim or Emacs.
-- Familiarity with [Git][git] and [GitHub][github]. This is technically not required, but it will make your life a lot easier.
+- Familiarity with an 集成开发环境 (IDE) of your choice.
+      - NeoForge 官方支持 [IntelliJ IDEA][intellij] 和 [Eclipse][eclipse], both of which have integrated Gradle support. However, any IDE can be used, ranging from Netbeans or Visual Studio Code to Vim or Emacs.
+- 熟悉 [Git][git] 和 [GitHub][github]. 这不是技术需要, 但是会让你的生活更美好.
 
-## Setting Up the Workspace
+## 设置开发环境
 
-- Go to the [Mod Generator](https://neoforged.net/mod-generator/) webpage, type in a mod name (and optionally a mod id), package name, Minecraft version, and Gradle plugin (either [ModDevGradle][mdg] or [NeoGradle][ng]), click "Download Mod Project", and extract the downloaded ZIP file.
-- Open your IDE and import the Gradle project. Eclipse and IntelliJ IDEA will do this automatically for you. If you have an IDE that does not do this, you can also do it via the `gradlew` terminal command.
+- 前往 [Mod Generator](https://neoforged.net/mod-generator/) 页面, type in a mod name (and optionally a mod id), package name, Minecraft version, and Gradle plugin (either [ModDevGradle][mdg] or [NeoGradle][ng]), click "Download Mod Project", and extract the downloaded ZIP file.
+- 打开你的 IDE and import the Gradle project. Eclipse and IntelliJ IDEA will do this automatically for you. If you have an IDE that does not do this, you can also do it via the `gradlew` terminal command.
       - When doing this for the first time, Gradle will download all dependencies of NeoForge, including Minecraft itself, and decompile them. This can take a fair amount of time (up to an hour, depending on your hardware and network strength).
       - Whenever you make a change to the Gradle files, the Gradle changes will need to be reloaded, either through the "Reload Gradle" button in your IDE, or again through the `gradlew` terminal command.
 
-## Customizing Your Mod Information
+## 自定义 Mod 信息
 
 Many of the basic properties of your mod can be changed in the `gradle.properties` file. This includes basic things like the mod name or the mod version. For more information, see the comments in the `gradle.properties` file, or see [the documentation of the `gradle.properties` file][properties].
 
@@ -32,13 +32,13 @@ If you want to modify the build process beyond that, you can edit the `build.gra
 Only edit the `build.gradle` and `settings.gradle` files if you know what you are doing. All basic properties can be set via `gradle.properties`.
 :::
 
-## Building and Testing Your Mod
+## 构建和测试
 
 To build your mod, run `gradlew build`. This will output a file in `build/libs` with the name `<archivesBaseName>-<version>.jar`. `<archivesBaseName>` and `<version>` are properties set by the `build.gradle` and default to the `mod_id` and `mod_version` values in the `gradle.properties` file, respectively; this can be changed in the `build.gradle` if desired. The resulting JAR file can then be placed in the `mods` folder of a NeoForge-enabled Minecraft setup, or uploaded to a mod distribution platform.
 
 To run your mod in a test environment, you can either use the generated run configurations or use the associated tasks (e.g. `gradlew runClient`). This will launch Minecraft from the corresponding runs directory (e.g. `runs/client` or `runs/server`), along with any source sets specified. The default MDK includes the `main` source set, so any code written in `src/main/java` will be applied.
 
-### Server Testing
+### 服务器测试
 
 If you are running a dedicated server, whether through the run configuration or `gradlew runServer`, the server will shut down immediately. You will need to accept the Minecraft EULA by editing the `eula.txt` file in the run directory.
 

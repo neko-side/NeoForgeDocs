@@ -1,10 +1,10 @@
-# NeoForged Documentation
+# NeoForged 非官方中文文档
 
 This repository is used to store documentation on NeoForge, the Minecraft modding API. It also contains documentation on NeoGradle, a Gradle plugin for developing NeoForge and mods using NeoForge.
 
-The documentation is built using [Docusaurus 3](https://docusaurus.io)
+本文档基于 [Docusaurus 3](https://docusaurus.io)
 
-## Contributing
+## 贡献
 
 You can read the [contribution guidelines on the docs](https://docs.neoforged.net/contributing/).
 
@@ -12,7 +12,7 @@ If you wish to contribute to the documentation, fork and clone this repository.
 
 The documentation uses Node.js 18. This can either be installed manually or using a version manager that supports `.node-version` or `.nvmrc`. For most version managers, the `install` and/or `use` command can be used to setup the correct Node.js version.
 
-For example:
+例如:
 
 ```bash
 nvm install # or 'nvs use'
