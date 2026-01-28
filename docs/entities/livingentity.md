@@ -1,15 +1,15 @@
 ---
 sidebar_position: 3
 ---
-# Living Entities, Mobs & Players
+# Living Entities, 怪物 & 玩家
 
 Living entities are a big subgroup of [entities] that all inherit from the common `LivingEntity` superclass. These include mobs (through the `Mob` subclass), players (through the `Player` subclass) and armor stands (through the `ArmorStand` subclass).
 
 Living entities have a number of additional properties that regular entities do not have. These include [attributes], [mob effects][mobeffects], damage tracking and more.
 
-## Health, Damage and Healing
+## 生命值, 伤害和治疗
 
-_See also: [Attributes][attributes]._
+_参见: [Attributes][attributes]._
 
 One of the most notable features that sets living entities apart from others is the fully-fleshed health system. Living entities generally have a max health, a current health and sometimes things such as armor or natural regeneration.
 

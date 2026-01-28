@@ -1,20 +1,20 @@
-# Versioning
+# 版本
 
 This article will break down how versioning works in Minecraft and NeoForge, and will give some recommendations for mod versioning as well.
 
 ## Minecraft
 
-Minecraft uses [semantic versioning][semver]. Semantic versioning, or "semver" for short, has the format `major.minor.patch`. So for example, Minecraft 1.20.2 has the major version 1, the minor version 20 and the patch version 2.
+Minecraft 使用 [语义化版本][semver]. 语义化版本, or "semver" for short, 格式为 `主版本号.次版本号.修订号`. 例如, Minecraft 1.20.2 主版本号为 1, 次版本号为 20，修订号为 2.
 
-Minecraft has used `1` as the major version since 2011, when Minecraft 1.0 was introduced. Before that, the versioning scheme changed often, and there were versions like `a1.1` (Alpha 1.1), `b1.7.3` (Beta 1.7.3) or even the `infdev` versions, which didn't follow a clear versioning scheme at all. Due to the `1` major version holding up for over a decade now, and due to the in-joke that is Minecraft 2, it is generally considered unlikely that this is ever going to change.
+Minecraft 从 2011 年起用 `1` 作为主版本号, 这也是 Minecraft 1.0 发布的时候. 在那之前, the versioning scheme changed often, and there were versions like `a1.1` (Alpha 1.1), `b1.7.3` (Beta 1.7.3) or even the `infdev` versions, which didn't follow a clear versioning scheme at all. Due to the `1` major version holding up for over a decade now, and due to the in-joke that is Minecraft 2, it is generally considered unlikely that this is ever going to change.
 
-### Snapshots
+### 快照
 
 Snapshots deviate from the standard semver scheme. They are labeled as `YYwWWa`, where `YY` represents the last two digits of the year (e.g. `23`) and `WW` represents the week of that year (e.g. `01`). So for example, snapshot `23w01a` is the snapshot released in the first week of 2023.
 
 The `a` suffix exists for occasions where two snapshots get released in the same week (where the second snapshot would then be named something like `23w01b`). Mojang has occasionally used this in the past. The alternative suffix has also been used for snapshots like `20w14infinite`, which was the [2020 infinite dimensions April Fool's joke][infinite].
 
-### Pre-releases and Release Candidates
+### 预发布和发布候选版本
 
 When a snapshot cycle is coming completion, Mojang starts releasing so-called pre-releases. Pre-releases are deemed feature-complete for a version and focus solely on bugfixes. They use the semver notation for the version it is for, suffixed by `-preX`. So for example, the first pre-release for 1.20.2 was named `1.20.2-pre1`. There can be and usually are multiple pre-releases, which are accordingly suffixed with `-pre2`, `-pre3`, etc.
 

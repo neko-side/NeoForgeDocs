@@ -17,7 +17,7 @@
 
 ## 设置开发环境
 
-- 前往 [Mod Generator](https://neoforged.net/mod-generator/) 页面, 输入你的 Mod 名字, mod id(这是可选的), Java 包名, Minecraft 版本, 和 Gradle plugin ([ModDevGradle][mdg] 或 [NeoGradle][ng]), 点击 "Download Mod Project", 提取下载好的 ZIP 文件.
+- 前往 [Mod Generator](https://neoforged.net/mod-generator/) 页面, 输入你的 Mod 名字, mod id(可选), Java 包名, Minecraft 版本, 和 Gradle plugin ([ModDevGradle][mdg] 或 [NeoGradle][ng]), 点击 "Download Mod Project", 提取下载好的 ZIP 文件.
 - 打开你的 IDE 并导入该 Gradle 项目. Eclipse 和 IntelliJ IDEA 可以自动导入. 如果你的 IDE 不能自动导入, 你可以在终端执行 `gradlew` 命令.
       - 如果是第一次, Gradle 将自动下载 NeoForge 的所有依赖, 包括 Minecraft 本身, 并且会反编译它. 这会花费较多的时间 (可能高达一个小时, 这取决于你的硬件和网络条件).
       - 无论何时你改变 Gradle 文件, Gradle 改变都需要被重新加载, 可以通过 IDE 的 "Reload Gradle" 按钮, 或者再次执行 `gradlew` 命令.
@@ -36,7 +36,7 @@ If you want to modify the build process beyond that, 你可以编辑 `build.grad
 
 要构建你的 Mod, 运行 `gradlew build`. 这会在 `build/libs` 下输出一个名为 `<archivesBaseName>-<version>.jar` 的文件. `<archivesBaseName>` 和 `<version>` 都是 `build.gradle` 中设置的属性, 默认是 `gradle.properties` 中的 `mod_id` 和 `mod_version`; 如果你愿意可以在 `build.gradle` 中修改. 产生的 jar 文件可以放在 `mods` 文件夹中, 或发布到 Mod 平台.
 
-To run your mod in a test environment, you can either use the generated run configurations or use the associated tasks (e.g. `gradlew runClient`). This will launch Minecraft from the corresponding runs directory (e.g. `runs/client` or `runs/server`), along with any source sets specified. The default MDK includes the `main` source set, so any code written in `src/main/java` will be applied.
+要在测试环境中运行你的 Mod, 可以使用生成的 run configurations 或使用相关的 Tasks (e.g. `gradlew runClient`). 这会从对应的 run 目录启动 Minecraft (e.g. `runs/client` or `runs/server`), along with any source sets specified. The default MDK includes the `main` source set, so any code written in `src/main/java` will be applied.
 
 ### 服务器测试
 
@@ -45,7 +45,7 @@ To run your mod in a test environment, you can either use the generated run conf
 接受 EULA 后, 服务器在 `localhost` (或 `127.0.0.1`) 下可用. 不过, 你仍然不能加入, 因为服务器默认是在线模式, 要求正版验证 (开发环境下你没有验证). 要解决这个问题，关闭服务器后在 `server.properties` 中修改 `online-mode` 属性为 `false`. 现在, 启动服务器, 你应该可以正常连接.
 
 :::tip
-You should always test your mod in a dedicated server environment. This includes [client-only mods][client], as these should not do anything when loaded on the server.
+你总是应该在服务器上测试你的 Mod. 这包括 [仅客户端 Mod][client], as these should not do anything when loaded on the server.
 :::
 
 [client]: ../concepts/sides.md

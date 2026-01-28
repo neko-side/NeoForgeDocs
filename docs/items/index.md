@@ -1,10 +1,10 @@
-# Items
+# 物品（Item）
 
-Along with blocks, items are a key component of Minecraft. While blocks make up the world around you, items exist within inventories.
+跟方块一样，物品也是 Minecraft 的重要组成部分. 不同的是, 方块组成了你周围的世界，而物品在你的物品栏中.
 
-## What Even Is an Item?
+## Item 到底是什么?
 
-Before we get further into creating items, it is important to understand what an item actually is, and what distinguishes it from, say, a [block][block]. Let's illustrate this using an example:
+在讨论如何创建一个 Item 之前, it is important to understand what an item actually is, and what distinguishes it from, say, a [block][block]. Let's illustrate this using an example:
 
 - In the world, you encounter a dirt block and want to mine it. This is a **block**, because it is placed in the world. (Actually, it is not a block, but a blockstate. See the [Blockstates article][blockstates] for more detailed information.)
     - Not all blocks drop themselves when breaking (e.g. leaves), see the article on [loot tables][loottables] for more information.
@@ -13,7 +13,7 @@ Before we get further into creating items, it is important to understand what an
 - Item stacks are backed by their corresponding **item** (which is what we're creating). Items hold [data components][datacomponents] that contains the default information all items stacks are initialized to (for example, every iron sword has a max durability of 250), while item stacks can modify those data components, allowing two different stacks for the same item to have different information (for example, one iron sword has 100 uses left, while another iron sword has 200 uses left). For more information on what is done through items and what is done through item stacks, read on.
     - The relationship between items and item stacks is roughly the same as between [blocks][block] and [blockstates][blockstates], in that a blockstate is always backed by a block. It's not a really accurate comparison (item stacks aren't singletons, for example), but it gives a good basic idea about what the concept is here.
 
-## Creating an Item
+## 创建一个 Item
 
 Now that we understand what an item is, let's create one!
 
