@@ -1,18 +1,18 @@
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-# Recipes
+# 合成配方
 
-Recipes are a way to transform a set of objects into other objects within a Minecraft world. Although Minecraft uses this system purely for item transformations, the system is built in a way that allows any kind of objects - blocks, entities, etc. - to be transformed. Almost all recipes use recipe data files; a "recipe" is assumed to be a data-driven recipe in this article unless explicitly stated otherwise.
+配方是 Minecraft 世界中把一些对象转换为其他对象的一种方式. Although Minecraft uses this system purely for item transformations, the system is built in a way that allows any kind of objects - blocks, entities, etc. - to be transformed. Almost all recipes use recipe data files; a "recipe" is assumed to be a data-driven recipe in this article unless explicitly stated otherwise.
 
-Recipe data files are located at `data/<namespace>/recipe/<path>.json`. For example, the recipe `minecraft:diamond_block` is located at `data/minecraft/recipe/diamond_block.json`.
+配方数据文件位于 `data/<namespace>/recipe/<path>.json`. 例如, `minecraft:diamond_block` 的配方位于 `data/minecraft/recipe/diamond_block.json`.
 
-## Terminology
+## 术语
 
-- A **recipe JSON**, or **recipe file**, is a JSON file that is loaded and stored by the `RecipeManager`. It contains info such as the recipe type, the inputs and outputs, as well as additional information (e.g. processing time).
-- A **`Recipe`** holds in-code representations of all JSON fields, alongside the matching logic ("Does this input match the recipe?") and some other properties.
+- 一个 **配方 JSON**, 或者 **配方文件**, 是一个被 `RecipeManager` 加载和存储的 JSON 文件. It contains info such as the recipe type, the inputs and outputs, as well as additional information (e.g. processing time).
+- 一个 **`Recipe`** holds in-code representations of all JSON fields, alongside the matching logic ("Does this input match the recipe?") and some other properties.
 - A **`RecipeInput`** is a type that provides inputs to a recipe. Comes in several subclasses, e.g. `CraftingInput` or `SingleRecipeInput` (for furnaces and similar).
-- A **recipe ingredient**, or just **ingredient**, is a single input for a recipe (whereas the `RecipeInput` generally represents a collection of inputs to check against a recipe's ingredients). Ingredients are a very powerful system and as such outlined [in their own article][ingredients].
+- 一个 **配方原料**, or just **ingredient**, is a single input for a recipe (whereas the `RecipeInput` generally represents a collection of inputs to check against a recipe's ingredients). Ingredients are a very powerful system and as such outlined [in their own article][ingredients].
 - A **`PlacementInfo`** is a definition of items the recipe contains and what indexes they should populate. If the recipe cannot be captured to some degree based on the items provided (e.g., only changing the data components), then `PlacementInfo#NOT_PLACEABLE` is used.
 - A **`SlotDisplay`** defines how a single slot should display within a recipe viewer, like the recipe book.
 - A **`RecipeDisplay`** defines the `SlotDisplay`s of a recipe to be consumed by a recipe viewer, like the recipe book. While the interface only contains methods for the result of a recipe and the workstation the recipe was conducted within, a subtype can capture information like ingredients or grid size.
@@ -25,7 +25,7 @@ Recipe data files are located at `data/<namespace>/recipe/<path>.json`. For exam
 - A **`RecipeBuilder`** is used during datagen to create JSON recipes.
 - A **recipe factory** is a method reference used to create a `Recipe` from a `RecipeBuilder`. It can either be a reference to a constructor, or a static builder method, or a functional interface (often named `Factory`) created specifically for this purpose.
 
-## JSON Specification
+## JSON 格式
 
 The contents of recipe files vary greatly depending on the selected type. Common to all recipe files are the `type` and [`neoforge:conditions`][conditions] properties:
 

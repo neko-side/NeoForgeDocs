@@ -1,13 +1,13 @@
 ---
 sidebar_position: 1
 ---
-# Entities
+# 实体
 
-Entities are in-world objects that can interact with the world in a variety of ways. Common example include mobs, projectiles, rideable objects, and even players. Each entity consists of multiple systems that may not seem understandable at first glance. This section will break down some of the key components related to constructing an entity and making it behave as the modder intends.
+实体是世界中能以许多方式与世界交互的对象. 常见的例子有怪物, projectiles, 可骑行的对象, 甚至是玩家. Each entity consists of multiple systems that may not seem understandable at first glance. This section will break down some of the key components related to constructing an entity and making it behave as the modder intends.
 
-## Terminology
+## 术语
 
-A simple entity is made up of three parts:
+一个简单的实体由三部分组成:
 
 - The [`Entity`][entity] subclass, which holds most of our entity's logic
 - The [`EntityType`][type], which is [registered][registration] and holds some common properties, and
@@ -17,7 +17,7 @@ More complex entities may require more parts. For example, many of the more comp
 
 ## `EntityType`
 
-The relationship between `EntityType`s and `Entity`s is similar to that of [`Item`s][item] and [`ItemStack`s][itemstack]. Like `Item`s, `EntityType`s are singletons that are registered to their corresponding registry (the entity type registry) and hold some values common to all entities of that type, while `Entity`s, like `ItemStack`s, are "instances" of that singleton type that hold data specific to that one entity instance. However, the key difference here is that most of the behavior is not defined in the singleton `EntityType`, but rather in the instantiated `Entity` class itself.
+`EntityType`s 和 `Entity`s 的关系与 that of [`Item`s][item] and [`ItemStack`s][itemstack] 相似. Like `Item`s, `EntityType`s are singletons that are registered to their corresponding registry (the entity type registry) and hold some values common to all entities of that type, while `Entity`s, like `ItemStack`s, are "instances" of that singleton type that hold data specific to that one entity instance. However, the key difference here is that most of the behavior is not defined in the singleton `EntityType`, but rather in the instantiated `Entity` class itself.
 
 Let's create our `EntityType` registry and register an `EntityType` for it, assuming we have a class `MyEntity` that extends `Entity` (see [below][entity] for more information). All methods on `EntityType.Builder`, except for the `#build` call at the end, are optional.
 
@@ -95,7 +95,7 @@ _See also [Natural Spawning][mobspawn]._
 
 An entity's `MobCategory` determines some properties for the entity, which are related to [spawning and despawning][mobspawn]. Vanilla adds a total of eight `MobCategory`s by default:
 
-| Name                         | Spawn Cap | Examples                                                                                                                       |
+| 名字                         | Spawn Cap | Examples                                                                                                                       |
 |------------------------------|-----------|--------------------------------------------------------------------------------------------------------------------------------|
 | `MONSTER`                    | 70        | Various monsters                                                                                                               |
 | `CREATURE`                   | 10        | Various animals                                                                                                                |

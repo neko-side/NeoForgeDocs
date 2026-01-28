@@ -1,10 +1,10 @@
-# Blocks
+# 方块（Blocks）
 
-Blocks are essential to the Minecraft world. They make up all the terrain, structures, and machines. Chances are if you are interested in making a mod, then you will want to add some blocks. This page will guide you through the creation of blocks, and some of the things you can do with them.
+方块是 Minecraft 世界的必要组成部分. 它们组成了所有的地形, 结构和机器. Chances are if you are interested in making a mod, then you will want to add some blocks. This page will guide you through the creation of blocks, and some of the things you can do with them.
 
 ## One Block to Rule Them All
 
-Before we get started, it is important to understand that there is only ever one of each block in the game. A world consists of thousands of references to that one block in different locations. In other words, the same block is just displayed a lot of times.
+在开始之前, it is important to understand that there is only ever one of each block in the game. A world consists of thousands of references to that one block in different locations. In other words, the same block is just displayed a lot of times.
 
 Due to this, a block should only ever be instantiated once, and that is during [registration]. Once the block is registered, you can then use the registered reference as needed.
 
@@ -14,42 +14,42 @@ Unlike most other registries, blocks can use a specialized version of `DeferredR
 - `#register` returns a `DeferredBlock<T extends Block>`, which extends `DeferredHolder<Block, T>`. `T` is the type of the class of the block we are registering.
 - There are a few helper methods for registering block. See [below] for more details.
 
-So now, let's register our blocks:
+现在让我们注册方块:
 
 ```java
-//BLOCKS is a DeferredRegister.Blocks
+//BLOCKS 是一个 DeferredRegister.Blocks
 public static final DeferredBlock<Block> MY_BLOCK = BLOCKS.register("my_block", registryName -> new Block(...));
 ```
 
-After registering the block, all references to the new `my_block` should use this constant. For example, if you want to check if the block at a given position is `my_block`, the code for that would look something like this:
+在注册完方块后, 所有对这个新方块 `my_block` 的引用都应该使用这个常量. 例如, 如果你想检查某个位置的方块是否是 `my_block`, 代码看上去应该像这样:
 
 ```java
-level.getBlockState(position) // returns the blockstate placed in the given level (world) at the given position
+level.getBlockState(position) // 返回位于给定 level (world) 给定位置的方块状态
     //highlight-next-line
     .is(MyBlockRegistrationClass.MY_BLOCK);
 ```
 
-This approach also has the convenient effect that `block1 == block2` works and can be used instead of Java's `equals` method (using `equals` still works, of course, but is pointless since it compares by reference anyway).
+这样的话 `block1 == block2` 能够正常使用而不是使用 Java 的 `equals` 方法 (当然 `equals` 也能够正常使用, 但是是没有意义的因为它比较的是引用).
 
 :::danger
-Do not call `new Block()` outside registration! As soon as you do that, things can and will break:
+不要在注册过程以外调用 `new Block()`! 这会导致:
 
 - Blocks must be created while registries are unfrozen. NeoForge unfreezes registries for you and freezes them later, so registration is your time window to create blocks.
 - If you try to create and/or register a block when registries are frozen again, the game will crash and report a `null` block, which can be very confusing.
 - If you still manage to have a dangling block instance, the game will not recognize it while syncing and saving, and replace it with air.
 :::
 
-## Creating Blocks
+## 创建方块
 
-As discussed before, we start by creating our `DeferredRegister.Blocks`:
+跟之前一样，我们创建我们的 `DeferredRegister.Blocks`:
 
 ```java
 public static final DeferredRegister.Blocks BLOCKS = DeferredRegister.createBlocks("yourmodid");
 ```
 
-### Basic Blocks
+### 基本的方块
 
-For simple blocks which need no special functionality (think cobblestone, wooden planks, etc.), the `Block` class can be used directly. To do so, during registration, instantiate `Block` with a `BlockBehaviour.Properties` parameter. This `BlockBehaviour.Properties` parameter can be created using `BlockBehaviour.Properties#of`, and it can be customized by calling its methods. The most important methods for this are:
+对于不需要指定功能的简单方块 (圆石、木板等等), `Block` 可以直接使用. 要这样的话, 在注册的时候, 用一个 `BlockBehaviour.Properties` 参数实例化 `Block` . 这个 `BlockBehaviour.Properties` 参数可以用 `BlockBehaviour.Properties#of` 创建, and it can be customized by calling its methods. The most important methods for this are:
 
 - `setId` - Sets the resource key of the block.
     - This **must** be set on every block; otherwise, an exception will be thrown.
@@ -60,7 +60,7 @@ For simple blocks which need no special functionality (think cobblestone, wooden
 - `sound` - Sets the sound the block makes when it is punched, broken, or placed.
     - The default value is `SoundType.STONE`. See the [Sounds page][sounds] for more details.
 - `lightLevel` - Sets the light emission of the block. Accepts a function with a `BlockState` parameter that returns a value between 0 and 15.
-    - For example, glowstone uses `state -> 15`, and torches use `state -> 14`.
+    - 例如, glowstone uses `state -> 15`, and torches use `state -> 14`.
 - `friction` - Sets the friction (slipperiness) of the block.
     - Default value is 0.6. Ice uses 0.98.
 
@@ -89,13 +89,13 @@ It is important to understand that a block in the world is not the same thing as
 A `BlockItem` must be registered separately from the block. This is because a block does not necessarily need an item, for example if it is not meant to be collected (as is the case with fire, for example).
 :::
 
-### More Functionality
+### 更多功能
 
 Directly using `Block` only allows for very basic blocks. If you want to add functionality, like player interaction or a different hitbox, a custom class that extends `Block` is required. The `Block` class has many methods that can be overridden to do different things; see the classes `Block`, `BlockBehaviour` and `IBlockExtension` for more information. See also the [Using blocks][usingblocks] section below for some of the most common use cases for blocks.
 
 If you want to make a block that has different variants (think a slab that has a bottom, top, and double variant), you should use [blockstates]. And finally, if you want a block that stores additional data (think a chest that stores its inventory), a [block entity][blockentities] should be used. The rule of thumb here is that if you have a finite and reasonably small amount of states (= a few hundred states at most), use blockstates, and if you have an infinite or near-infinite amount of states, use a block entity.
 
-#### Block Types
+#### 方块类型
 
 Block types are [`MapCodec`s][codec] used to serialize and deserialize a block object. This `MapCodec` is set via `BlockBehaviour#codec` and [registered][registration] to the block type registry. Currently, its only use is when the block list report is being generated. A block type should be created once for every subclass of `Block`. For example, `FlowerBlock#CODEC` represents the block type for most flowers while its subclass `WitherRoseBlock` has a separate block type.
 
@@ -195,9 +195,9 @@ public static final DeferredBlock<Block> EXAMPLE_BLOCK = BLOCKS.registerSimpleBl
 
 This does the exact same as the previous example, but is slightly shorter. Of course, if you want to use a subclass of `Block` and not `Block` itself, you will have to use the previous method instead.
 
-### Resources
+### 资源
 
-If you register your block and place it in the world, you will find it to be missing things like a texture. This is because [textures], among others, are handled by Minecraft's resource system. When adding a new block in Minecraft, you should either write or [generate][datagen] the following files:
+如果你注册了你的方块并将其放置在世界中, 你会发现它缺少纹理. 这是因为 [textures], among others, are handled by Minecraft's resource system. When adding a new block in Minecraft, you should either write or [generate][datagen] the following files:
 
 - A [blockstate file][bsfile]
 - A [block model][model]
@@ -207,7 +207,7 @@ If you register your block and place it in the world, you will find it to be mis
 
 For all of the above, also reference the files and data generators of similar vanilla blocks.
 
-## Using Blocks
+## 使用方块
 
 Blocks are very rarely directly used to do things. In fact, probably two of the most common operations in all of Minecraft - getting the block at a position, and setting a block at a position - use blockstates, not blocks. The general design approach is to have the block define behavior, but have the behavior actually run through blockstates. Due to this, `BlockState`s are often passed to methods of `Block` as a parameter. For more information on how blockstates are used, and on how to get one from a block, see [Using Blockstates][usingblockstates].
 

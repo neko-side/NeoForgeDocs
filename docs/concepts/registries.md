@@ -1,15 +1,15 @@
 ---
 sidebar_position: 1
 ---
-# Registries
+# 注册
 
-Registration is the process of taking the objects of a mod (such as [items][item], [blocks][block], entities, etc.) and making them known to the game. Registering things is important, as without registration the game will simply not know about these objects, which will cause unexplainable behaviors and crashes.
+注册是记录 Mod 中的对象 (如 [物品][item], [方块][block], 实体 等) 并让它们被游戏知晓的过程. 注册非常重要, 因为如果不注册，游戏根本就不知道这些对象, 会导致未期待的表现和崩溃.
 
 A registry is, simply put, a wrapper around a map that maps registry names (read on) to registered objects, often called registry entries. Registry names must be unique within the same registry, but the same registry name may be present in multiple registries. The most common example for this are blocks (in the `BLOCKS` registry) that have an item form with the same registry name (in the `ITEMS` registry).
 
-Every registered object has a unique name, called its registry name. The name is represented as a [`ResourceLocation`][resloc]. For example, the registry name of the dirt block is `minecraft:dirt`, and the registry name of the zombie is `minecraft:zombie`. Modded objects will of course not use the `minecraft` namespace; their mod id will be used instead.
+每一个注册的对象都有一个独一无二的名字, called its registry name. 这个名字被表示为 [`ResourceLocation`][resloc]. 例如, the registry name of the dirt block is `minecraft:dirt`, and the registry name of the zombie is `minecraft:zombie`. Modded objects will of course not use the `minecraft` 命名空间; their mod id will be used instead.
 
-## Vanilla vs. Modded
+## 原版 vs. Mod
 
 To understand some of the design decisions that were made in NeoForge's registry system, we will first look at how Minecraft does this. We will use the block registry as an example, as most other registries work the same way.
 
@@ -19,9 +19,9 @@ Minecraft registers all blocks in the `Blocks` class. Through the `register` met
 
 The main reason all of this works is that `Blocks` is classloaded early enough by Minecraft. Mods are not automatically classloaded by Minecraft, and thus workarounds are needed.
 
-## Methods for Registering
+## 注册的方法
 
-NeoForge offers two ways to register objects: the `DeferredRegister` class, and the `RegisterEvent`. Note that the former is a wrapper around the latter, and is recommended in order to prevent mistakes.
+NeoForge 提供两种注册对象的方式: `DeferredRegister` 类和 `RegisterEvent` 类. Note that the former is a wrapper around the latter, and is recommended in order to prevent mistakes.
 
 ### `DeferredRegister`
 
