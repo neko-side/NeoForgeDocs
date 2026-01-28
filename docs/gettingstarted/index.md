@@ -1,48 +1,48 @@
-# Getting Started with NeoForge
+# 入门
 
 本文主要关于如何设置你的 Mod 开发环境, 以及如何运行与测试你的 Mod.
 
 ## 前置条件
 
-- 熟悉 Java 编程语言, specifically its object-oriented, polymorphic, generic, and functional features.
-- An installation of the Java 21 Development Kit (JDK) and 64-bit Java Virtual Machine (JVM). NeoForge 推荐且官方支持 [Microsoft builds of OpenJDK][jdk], 但是任何其他 JDK 也能够正常工作.
+- 熟悉 Java 编程语言, 以及面向对象, 多态, 泛型, and functional features.
+- 安装 Java 21 开发套件 (JDK) 和 64-bit Java 虚拟机 (JVM). NeoForge 推荐且官方支持 [Microsoft builds of OpenJDK][jdk], 但是任何其他 JDK 也能够正常工作.
 
 :::caution
 确保你正在使用 64 位的 JVM. 一种检查方式是在终端中输入 `java -version`. Minecraft 不支持 32 位的 JVM.
 :::
 
-- Familiarity with an 集成开发环境 (IDE) of your choice.
-      - NeoForge 官方支持 [IntelliJ IDEA][intellij] 和 [Eclipse][eclipse], both of which have integrated Gradle support. However, any IDE can be used, ranging from Netbeans or Visual Studio Code to Vim or Emacs.
+- 熟悉一个集成开发环境 (IDE).
+      - NeoForge 官方支持 [IntelliJ IDEA][intellij] 和 [Eclipse][eclipse], 两者都有 Gradle 集成. 不过其他 IDE 也可以使用, 例如 Netbeans, Visual Studio Code, Vim, Emacs 等.
 - 熟悉 [Git][git] 和 [GitHub][github]. 这不是技术需要, 但是会让你的生活更美好.
 
 ## 设置开发环境
 
-- 前往 [Mod Generator](https://neoforged.net/mod-generator/) 页面, type in a mod name (and optionally a mod id), package name, Minecraft version, and Gradle plugin (either [ModDevGradle][mdg] or [NeoGradle][ng]), click "Download Mod Project", and extract the downloaded ZIP file.
-- 打开你的 IDE and import the Gradle project. Eclipse and IntelliJ IDEA will do this automatically for you. If you have an IDE that does not do this, you can also do it via the `gradlew` terminal command.
-      - When doing this for the first time, Gradle will download all dependencies of NeoForge, including Minecraft itself, and decompile them. This can take a fair amount of time (up to an hour, depending on your hardware and network strength).
-      - Whenever you make a change to the Gradle files, the Gradle changes will need to be reloaded, either through the "Reload Gradle" button in your IDE, or again through the `gradlew` terminal command.
+- 前往 [Mod Generator](https://neoforged.net/mod-generator/) 页面, 输入你的 Mod 名字, mod id(这是可选的), Java 包名, Minecraft 版本, 和 Gradle plugin ([ModDevGradle][mdg] 或 [NeoGradle][ng]), 点击 "Download Mod Project", 提取下载好的 ZIP 文件.
+- 打开你的 IDE 并导入该 Gradle 项目. Eclipse 和 IntelliJ IDEA 可以自动导入. 如果你的 IDE 不能自动导入, 你可以在终端执行 `gradlew` 命令.
+      - 如果是第一次, Gradle 将自动下载 NeoForge 的所有依赖, 包括 Minecraft 本身, 并且会反编译它. 这会花费较多的时间 (可能高达一个小时, 这取决于你的硬件和网络条件).
+      - 无论何时你改变 Gradle 文件, Gradle 改变都需要被重新加载, 可以通过 IDE 的 "Reload Gradle" 按钮, 或者再次执行 `gradlew` 命令.
 
 ## 自定义 Mod 信息
 
-Many of the basic properties of your mod can be changed in the `gradle.properties` file. This includes basic things like the mod name or the mod version. For more information, see the comments in the `gradle.properties` file, or see [the documentation of the `gradle.properties` file][properties].
+Mod 的许多基本属性都可以在 `gradle.properties` 文件中修改, 如 Mod 名称, Mod ID 等. 关于更多信息, 看 `gradle.properties` 的注释, 或者看 [the documentation of the `gradle.properties` file][properties].
 
-If you want to modify the build process beyond that, you can edit the `build.gradle` and `settings.gradle` file. The Gradle plugins provided by NeoForge, either [ModDevGradle][mdg] or [NeoGradle][ng], provide several configuration options, a few of which are explained within the buildscript as comments.
+If you want to modify the build process beyond that, 你可以编辑 `build.gradle` 和 `settings.gradle` 文件. NeoForge 提供的 Gradle 插件, [ModDevGradle][mdg] 或 [NeoGradle][ng], 提供了许多设置选项, a few of which are explained within the buildscript as comments.
 
 :::caution
-Only edit the `build.gradle` and `settings.gradle` files if you know what you are doing. All basic properties can be set via `gradle.properties`.
+仅仅在你知道你在做什么的时候编辑 `build.gradle` 和 `settings.gradle`. Mod 的所有基本属性都可以在 `gradle.properties` 设置.
 :::
 
 ## 构建和测试
 
-To build your mod, run `gradlew build`. This will output a file in `build/libs` with the name `<archivesBaseName>-<version>.jar`. `<archivesBaseName>` and `<version>` are properties set by the `build.gradle` and default to the `mod_id` and `mod_version` values in the `gradle.properties` file, respectively; this can be changed in the `build.gradle` if desired. The resulting JAR file can then be placed in the `mods` folder of a NeoForge-enabled Minecraft setup, or uploaded to a mod distribution platform.
+要构建你的 Mod, 运行 `gradlew build`. 这会在 `build/libs` 下输出一个名为 `<archivesBaseName>-<version>.jar` 的文件. `<archivesBaseName>` 和 `<version>` 都是 `build.gradle` 中设置的属性, 默认是 `gradle.properties` 中的 `mod_id` 和 `mod_version`; 如果你愿意可以在 `build.gradle` 中修改. 产生的 jar 文件可以放在 `mods` 文件夹中, 或发布到 Mod 平台.
 
 To run your mod in a test environment, you can either use the generated run configurations or use the associated tasks (e.g. `gradlew runClient`). This will launch Minecraft from the corresponding runs directory (e.g. `runs/client` or `runs/server`), along with any source sets specified. The default MDK includes the `main` source set, so any code written in `src/main/java` will be applied.
 
 ### 服务器测试
 
-If you are running a dedicated server, whether through the run configuration or `gradlew runServer`, the server will shut down immediately. You will need to accept the Minecraft EULA by editing the `eula.txt` file in the run directory.
+如果你想运行服务器, 通过 Gradle configuration 或者执行 `gradlew runServer`, 但是服务器会马上关闭. 你必须编辑运行目录下的 `eula.txt` 文件来接受 Minecraft EULA.
 
-Once accepted, the server will load and become available under `localhost` (or `127.0.0.1` by default). However, you will still not able to join, because the server will be put into online mode by default, which requires authentication (that the Dev player does not have). To fix this, stop your server again and set the `online-mode` property in the `server.properties` file to `false`. Now, start your server, and you should be able to connect.
+接受 EULA 后, 服务器在 `localhost` (或 `127.0.0.1`) 下可用. 不过, 你仍然不能加入, 因为服务器默认是在线模式, 要求正版验证 (开发环境下你没有验证). 要解决这个问题，关闭服务器后在 `server.properties` 中修改 `online-mode` 属性为 `false`. 现在, 启动服务器, 你应该可以正常连接.
 
 :::tip
 You should always test your mod in a dedicated server environment. This includes [client-only mods][client], as these should not do anything when loaded on the server.
