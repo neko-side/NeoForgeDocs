@@ -1,4 +1,4 @@
-# Models
+# 模型
 
 Models are JSON files that determine the visual shape and texture(s) of a block or item. A model consists of cuboid elements, each with their own size, that then get assigned a texture to each face.
 

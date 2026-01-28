@@ -1,6 +1,6 @@
-# Loot Tables
+# 战利品表
 
-Loot tables are data files that are used to define randomized loot drops. A loot table can be rolled, returning a (potentially empty) list of item stacks. The output of this process depends on (pseudo-)randomness. Loot tables are located at `data/<mod_id>/loot_table/<name>.json`. For example, the loot table `minecraft:blocks/dirt`, used by the dirt block, is located at `data/minecraft/loot_table/blocks/dirt.json`.
+战利品表是被用于定义随机战利品掉落物的数据文件. A loot table can be rolled, returning a (potentially empty) list of item stacks. The output of this process depends on (pseudo-)randomness. Loot tables are located at `data/<mod_id>/loot_table/<name>.json`. For example, the loot table `minecraft:blocks/dirt`, used by the dirt block, is located at `data/minecraft/loot_table/blocks/dirt.json`.
 
 Minecraft uses loot tables at various points in the game, including [block] drops, [entity] drops, chest loot, fishing loot, and many others. How a loot table is referenced depends on the context:
 
@@ -45,7 +45,7 @@ The following composite types are provided by Minecraft:
 
 For modders, it is also possible to define [custom loot entry types][customentry].
 
-## Loot Pool
+## 战利品池
 
 A loot pool is, in essence, a list of loot entries. Loot tables can contain multiple loot pools, each loot pool will be rolled independently of the others.
 
@@ -76,7 +76,7 @@ Number providers are a way to get (pseudo-)randomized numbers in a datapack cont
 
 Modders can also register [custom number providers][customnumber] and [custom level-based values][customlevelbased] if needed.
 
-## Loot Parameters
+## 战利品参数
 
 A loot parameter, known internally as a `ContextKey<T>`, is a parameter provided to a loot table when rolled, where `T` is the type of the provided parameter, for example `BlockPos` or `Entity`. They can be used by [loot conditions][lootcondition] and [loot functions][lootfunction]. For example, the `minecraft:killed_by_player` loot condition checks for the presence of the `minecraft:player` parameter.
 
