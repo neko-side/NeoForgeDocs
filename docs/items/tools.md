@@ -1,18 +1,18 @@
 ---
 sidebar_position: 4
 ---
-# Tools
+# 工具
 
-Tools are [items][item] whose primary use is to break [blocks][block]. Many mods add new tool sets (for example copper tools) or new tool types (for example hammers).
+工具是主要用于破坏 [方块][block] 的 [物品][item]. 许多 Mod 添加了新的工具套装 (例如铜质工具) 或新的工具类型 (例如锤子).
 
-## Custom Tool Sets
+## 自定义工具套装
 
-A tool set typically consists of five items: a pickaxe, an axe, a shovel, a hoe and a sword (swords aren't tools in the classical sense, but are included here for consistency as well). All of these tools are implemented using the following eight [data components][datacomponents]:
+一个典型的工具套装包含了五个物品: 一把镐子, 一把斧子, 一把铁锹, 一把锄头和一把剑 (传统意义上剑并不是工具, 但是为了一致我们包含在这里). 所有这些工具都通过以下八个 [数据组件][datacomponents] 被实现:
 
-- `DataComponents#MAX_DAMAGE` and `#DAMAGE` for durability
-- `#MAX_STACK_SIZE` to set the stack size to `1`
-- `#REPAIRABLE` for repairing a tool in an anvil
-- `#ENCHANTABLE` for the maximum [enchanting][enchantment] value
+- `DataComponents#MAX_DAMAGE` 和 `#DAMAGE` for 耐久度
+- `#MAX_STACK_SIZE` 设置最大堆叠数为 `1`
+- `#REPAIRABLE` 设置可以通过铁砧修复
+- `#ENCHANTABLE` 设置最大 [附魔][enchantment] 值
 - `#ATTRIBUTE_MODIFIERS` for attack damage and attack speed
 - `#TOOL` for mining information
 - `#WEAPON` for damage taken by the item and shield disabling

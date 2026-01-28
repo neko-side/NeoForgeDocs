@@ -5,7 +5,7 @@ sidebar_position: 5
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-# Armor
+# 护甲
 
 Armors are [items][item] whose primary use is to protect a [`LivingEntity`][livingentity] from damage using a variety of resistances and effects. Many mods add new armor sets (for example copper armor).
 

@@ -1,4 +1,4 @@
-# Sounds
+# 音效
 
 Sounds, while not required for anything, can make a mod feel much more nuanced and alive. Minecraft offers you various ways to register and play sounds, which will be laid out in this article.
 

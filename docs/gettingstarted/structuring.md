@@ -1,4 +1,4 @@
-# Structuring Your Mod
+# 组织 Mod 结构
 
 Structured mods are beneficial for maintenance, making contributions, and providing a clearer understanding of the underlying codebase. Some of the recommendations from Java, Minecraft, and NeoForge are listed below.
 
@@ -6,7 +6,7 @@ Structured mods are beneficial for maintenance, making contributions, and provid
 You do not have to follow the advice below; you can structure your mod any way you see fit. However, it is still highly recommended to do so.
 :::
 
-## Packaging
+## 打包
 
 When structuring your mod, pick a unique, top-level package structure. Many programmers will use the same name for different classes, interfaces, etc. Java allows classes to have the same name as long as they are in different packages. As such, if two classes have the same package with the same name, only one would be loaded, most likely causing the game to crash.
 
@@ -50,7 +50,7 @@ In addition to the top-level package, it is highly recommend to break your mod's
 - **Group By Function**: Make subpackages for classes with a common purpose. For example, blocks can be under `block`, items under `item`, entities under `entity`, etc. Minecraft itself uses a similar structure (with some exceptions).
 - **Group By Logic**: Make subpackages for classes with a common logic. For example, if you were creating a new type of crafting table, you would put its block, menu, item, and more under `feature.crafting_table`.
 
-#### Client, Server, and Data Packages
+#### 客户端，服务器和数据包
 
 In general, code only for a given side or runtime should be isolated from the other classes in a separate subpackage. For example, code related to [data generation][datagen] should go in a `data` package, and code only on the dedicated server should go in a `server` package.
 

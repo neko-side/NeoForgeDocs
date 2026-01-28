@@ -1,7 +1,7 @@
 ---
 sidebar_position: 1
 ---
-# Interactions
+# 交互
 
 This page aims to make the fairly complex and confusing process of things being left-clicked, right-clicked or middle-clicked by the player more understandable, as well as clarifying what result to use where and why.
 
@@ -13,7 +13,7 @@ A hit result can be of one of three types, represented through the `HitResult.Ty
 
 Every frame on the [physical client][physicalside], the `Minecraft` class updates and stores the currently looked-at `HitResult` in the `hitResult` field. This field can then be accessed through `Minecraft.getInstance().hitResult`.
 
-## Left-Clicking an Item
+## 左键一个物品
 
 - It is checked that all required [feature flags][featureflag] for the [`ItemStack`][itemstack] in your main hand are enabled. If this check fails, the pipeline ends.
 - `InputEvent.InteractionKeyMappingTriggered` is fired with the left mouse button and the main hand. If the [event][event] is [canceled][cancel], the pipeline ends.
@@ -43,7 +43,7 @@ Every frame on the [physical client][physicalside], the `Minecraft` class update
     - Otherwise:
         - `PlayerInteractEvent.LeftClickEmpty` is fired.
 
-## Right-Clicking an Item
+## 右键一个物品
 
 During the right-clicking pipeline, a number of methods returning one of two result types (see below) are called. Most of these methods cancel the pipeline if an explicit success or an explicit failure is returned. For the sake of readability, this "explicit success or explicit failure" will be called a "definitive result" from now on.
 
@@ -114,7 +114,7 @@ The default implementation of `Item#use` returns `InteractionResult#CONSUME` whe
 
 Returning `InteractionResult#FAIL` here while considering the main hand will prevent offhand behavior from running. If you want offhand behavior to run (which you usually want), return `InteractionResult#PASS` instead.
 
-## Middle-Clicking
+## 中键
 
 - If the [`HitResult`][hitresult] in `Minecraft.getInstance().hitResult` is null or of type `MISS`, the pipeline ends.
 - `InputEvent.InteractionKeyMappingTriggered` is fired with the left mouse button and the main hand. If the [event][event] is [canceled][cancel], the pipeline ends.

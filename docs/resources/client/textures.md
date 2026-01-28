@@ -1,10 +1,10 @@
-# Textures
+# 纹理
 
 All textures in Minecraft are PNG files located within a namespace's `textures` folder. JPG, GIF and other image formats are not supported. The path of [resource locations][rl] referring to textures is generally relative to the `textures` folder, so for example, the resource location `examplemod:block/example_block` refers to the texture file at `assets/examplemod/textures/block/example_block.png`.
 
 Textures should generally be in sizes that are powers of two, for example 16x16 or 32x32. Unlike older versions, modern Minecraft natively supports block and item texture sizes greater than 16x16. For textures that are not in powers of two that you render yourself anyway (for example GUI backgrounds), create an empty file in the next available power-of-two size (often 256x256), and add your texture in the top left corner of that file, leaving the rest of the file empty. The actual size of the drawn texture can then be set in the code that uses the texture.
 
-## Texture Metadata
+## 纹理元数据
 
 Texture metadata can be specified in a file named exactly the same as the texture, with an additional `.mcmeta` suffix. For example, an animated texture at `textures/block/example.png` would need an accompanying `textures/block/example.png.mcmeta` file. The `.mcmeta` file has the following format (all optional):
 

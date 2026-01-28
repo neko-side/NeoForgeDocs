@@ -1,4 +1,4 @@
-# Particles
+# 粒子效果
 
 Particles are visual effects commonly spawned using their associated particle type. They can be spawned both client and server [side], but being mostly visual in nature, critical parts exist only on the physical (and logical) client side.
 

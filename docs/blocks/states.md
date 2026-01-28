@@ -1,12 +1,12 @@
-# Blockstates
+# 方块状态（Blockstates）
 
-Often, you will find yourself in a situation where you want different states of a block. For example, a wheat crop has eight growth stages, and making a separate block for each stage feels wrong. Or you have a slab or slab-like block - one bottom state, one top state, and one state that has both.
+你经常会发现自己想要一个方块的不同状态. 例如, 一个小麦作物有八个生长阶段, 为每一个阶段创建一个方块显然不是个好主意. 或者你有一个台阶或类似台阶的方块 - 有一个下半台阶的状态, 一个上半台阶的状态, 一个完整方块的状态.
 
-This is where blockstates come into play. Blockstates are an easy way to represent the different states a block can have, like a growth stage or a slab placement type.
+这就是方块状态的用武之处. 方块状态是表示一个方块的不同状态的简单方式, 就像一个作物的不同生长阶段和一个方块的不同放置状态.
 
-## Blockstate Properties
+## 方块状态的属性
 
-Blockstates use a system of properties. A block can have multiple properties of multiple types. For example, an end portal frame has two properties: whether it has an eye (`eye`, 2 options) and which direction it is placed in (`facing`, 4 options). So in total, the end portal frame has 8 (2 * 4) different blockstates:
+方块状态有一个属性系统. 一个方块可以有不同类型的多个属性. 例如, 一个末地传送门框架有两个属性: 是否有末影之眼 (`eye`, 2 个选项) 和它被放置的方向 (`facing`, 4 个选项). 所以, 末地传送门框架一共有 8 个(2 * 4) 不同的方块状态:
 
 ```
 minecraft:end_portal_frame[facing=north,eye=false]
@@ -25,13 +25,13 @@ If your block does not have any blockstate properties defined, it still has exac
 
 As with blocks, every `BlockState` exists exactly once in memory. This means that `==` can and should be used to compare `BlockState`s. `BlockState` is also a final class, meaning it cannot be extended. **Any functionality goes in the corresponding [Block][block] class!**
 
-## When to Use Blockstates
+## 什么时候使用方块状态
 
-### Blockstates vs. Separate Blocks
+### 方块状态 vs. 不同的方块
 
 A good rule of thumb is: **if it has a different name, it should be a separate block**. An example is making chair blocks: the direction of the chair should be a property, while the different types of wood should be separated into different blocks. So you'd have one chair block for each wood type, and each chair block has four blockstates (one for each direction).
 
-### Blockstates vs. [Block Entities][blockentity]
+### 方块状态 vs. [方块实体][blockentity]
 
 Here, the rule of thumb is: **if you have a finite amount of states, use a blockstate, if you have an infinite or near-infinite amount of states, use a block entity.** Block entities can store arbitrary amounts of data, but are slower than blockstates.
 
@@ -39,7 +39,7 @@ Blockstates and block entities can be used in conjunction with one another. For 
 
 There is no definitive answer to the question "How many states are too much for a blockstate?", but we recommend that if you need more than 8-9 bits of data (i.e. more than a few hundred states), you should use a block entity instead.
 
-## Implementing Blockstates
+## 实现方块状态
 
 To implement a blockstate property, in your block class, create or reference a `public static final Property<?>` constant. While you are free to make your own `Property<?>` implementations, the vanilla code provides several convenience implementations that should cover most use cases:
 
@@ -54,13 +54,13 @@ To implement a blockstate property, in your block class, create or reference a `
     - Created by calling `EnumProperty#create(String propertyName, Class<E> enumClass)`.
     - It is also possible to use only a subset of the Enum values (e.g. 4 out of 16 `DyeColor`s), see the overloads of `EnumProperty#create`.
 
-The class `BlockStateProperties` contains shared vanilla properties which should be used or referenced whenever possible, in place of creating your own properties.
+`BlockStateProperties` 类包含 shared vanilla properties which should be used or referenced whenever possible, in place of creating your own properties.
 
 Once you have your property constant, override `Block#createBlockStateDefinition(StateDefinition.Builder)` in your block class. In that method, call `StateDefinition.Builder#add(YOUR_PROPERTY);`. `StateDefinition.Builder#add` has a vararg parameter, so if you have multiple properties, you can add them all in one go.
 
 Every block will also have a default state. If nothing else is specified, the default state uses the default value of every property. You can change the default state by calling the `Block#registerDefaultState(BlockState)` method from your constructor.
 
-If you wish to change which `BlockState` is used when placing your block, override `Block#getStateForPlacement(BlockPlaceContext)`. This can be used to, for example, set the direction of your block depending on where the player is standing or looking when they place it.
+如果你想改变在放置方块时被使用的 `BlockState`, override `Block#getStateForPlacement(BlockPlaceContext)`. This can be used to, for example, set the direction of your block depending on where the player is standing or looking when they place it.
 
 To further illustrate this, this is what the relevant bits of the `EndPortalFrameBlock` class look like:
 
@@ -96,7 +96,7 @@ public class EndPortalFrameBlock extends Block {
 }
 ```
 
-## Using Blockstates
+## 使用方块状态
 
 To go from `Block` to `BlockState`, call `Block#defaultBlockState()`. The default blockstate can be changed through `Block#registerDefaultState`, as described above.
 
@@ -114,7 +114,7 @@ endPortalFrameBlockState = endPortalFrameBlockState.setValue(EndPortalFrameBlock
 ```
 
 :::note
-`BlockState`s are immutable. This means that when you call `#setValue(Property<T>, T)`, you are not actually modifying the blockstate. Instead, a lookup is performed internally, and you are given the blockstate object you requested, which is the one and only object that exists with these exact property values. This also means that just calling `state#setValue` without saving it into a variable (for example back into `state`) does nothing.
+`BlockState`s 是不可变的. 这意味着当你调用 `#setValue(Property<T>, T)` 的时候, 你实际上不能修改方块状态. Instead, a lookup is performed internally, and you are given the blockstate object you requested, which is the one and only object that exists with these exact property values. This also means that just calling `state#setValue` without saving it into a variable (for example back into `state`) does nothing.
 :::
 
 To get a `BlockState` from the level, use `Level#getBlockState(BlockPos)`.

@@ -2,7 +2,7 @@
 sidebar_position: 2
 ---
 
-# Data Components
+# 数据组件
 
 Data components are key-value pairs within a map used to store data on an `ItemStack`. Each piece of data, such as firework explosions or tools, are stored as actual objects on the stack, making the values visible and operable without having to dynamically transform a general encoded instance (e.g., `CompoundTag`, `JsonElement`).
 
@@ -12,7 +12,7 @@ Each data component has an associated `DataComponentType<T>`, where `T` is the c
 
 A list of existing components can be found within `DataComponents`.
 
-### Creating Custom Data Components
+### 创建自定义数据组件
 
 The component value associated with the `DataComponentType` must implement `hashCode` and `equals` and should be considered **immutable** when stored.
 

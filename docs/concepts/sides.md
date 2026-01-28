@@ -1,23 +1,23 @@
 ---
 sidebar_position: 2
 ---
-# Sides
+# 端
 
-Like many other programs, Minecraft follows a client-server concept, where the client is responsible for displaying the data, while the server is responsible for updating them. When using these terms, we have a fairly intuitive understanding of what we mean... right?
+像许多其他程序一样, Minecraft 遵循客户端-服务端的概念, 客户端负责显示数据, 而服务端负责更新数据. When using these terms, we have a fairly intuitive understanding of what we mean... 对吗?
 
 Turns out, not so much. A lot of the confusion stems from Minecraft having two different concepts of sides, depending on the context: the physical and the logical side.
 
-## Logical vs. Physical Side
+## 逻辑端 vs. 物理端
 
-### The Physical Side
+### 物理端
 
 When you open your Minecraft launcher, select a Minecraft installation and press play, you boot up a **physical client**. The word "physical" is used here in the sense of "this is a client program". This especially means that client-side functionality, such as all the rendering stuff, is available here and can be used as needed. In contrast, the **physical server**, also known as dedicated server, is what opens when you launch a Minecraft server JAR. While the Minecraft server comes with a rudimentary GUI, it is missing all client-only functionality. Most notably, this means that various client classes are missing from the server JAR. Calling these classes on the physical server will lead to missing class errors, i.e. crashes, so we need to safeguard against this.
 
-### The Logical Side
+### 逻辑端
 
 The logical side is mainly focused on the internal program structure of Minecraft. The **logical server** is where the game logic runs. Things like time and weather changing, entity ticking, entity spawning, etc. all run on the server. All kinds of data, such as inventory contents, are the server's responsibility as well. The **logical client**, on the other hand, is responsible for displaying everything there is to display. Minecraft keeps all the client code in an isolated `net.minecraft.client` package, and runs it in a separate thread called the Render Thread, while everything else is considered common (i.e. client and server) code.
 
-### What's the Difference?
+### 区别是什么?
 
 The difference between physical and logical sides is best exemplified by two scenarios:
 

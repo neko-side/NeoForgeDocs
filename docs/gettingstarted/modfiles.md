@@ -1,4 +1,4 @@
-# Mod Files
+# Mod 文件
 
 The mod files are responsible for determining what mods are packaged into your JAR, what information to display within the 'Mods' menu, and how your mod should be loaded in the game.
 
@@ -28,7 +28,7 @@ Most values are also explained as comments in [the MDK's `gradle.properties` fil
 | `mod_authors`             | The authors of the mod, shown in the mod list.                                                                                                                                                                                          | `mod_authors=ExampleModder`                |
 | `mod_description`         | The description of the mod, as a multiline string, shown in the mod list. Newline characters (`\n`) can be used and will be replaced properly.                                                                                          | `mod_description=Example mod description.` |
 
-### The Mod ID
+### Mod ID
 
 The mod ID is the main way your mod is distinguished from others. It is used in a wide variety of places, including as the namespace for your mod's [registries][registration], and as your [resource and data pack][resource] namespaces. Having two mods with the same id will prevent the game from loading.
 

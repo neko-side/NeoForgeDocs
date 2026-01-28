@@ -7,9 +7,9 @@ Entity renderers are used to define rendering behavior for an entity. They only 
 
 Entity rendering uses what is known as entity render states. Simply put, this is an object that holds all values that the renderer needs. Every time the entity is rendered, the render state is updated, and then the `#submit` method uses that to submit the desired [features] needed to render the entity at a later point in time.
 
-## Creating an Entity Renderer
+## 创建一个 Entity Renderer
 
-The simplest entity renderer is one that directly extends `EntityRenderer`:
+最简单的 entity renderer 创建方式是直接继承 `EntityRenderer`:
 
 ```java
 // The generic type in the superclass should be set to what entity you want to render.
