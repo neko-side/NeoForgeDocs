@@ -1,11 +1,11 @@
 ---
 sidebar_position: 6
 ---
-# Mob Effects & Potions
+# Mob Effects & 药水
 
 Status effects, sometimes known as potion effects and referred to in-code as `MobEffect`s, are effects that influence a [`LivingEntity`][livingentity] every tick. This article explains how to use them, what the difference between an effect and a potion is, and how to add your own.
 
-## Terminology
+## 术语
 
 - A `MobEffect` affects an entity every tick. Like [blocks][block] or [items][item], `MobEffect`s are registry objects, meaning they must be [registered][registration] and are singletons.
     - An **instant mob effect** is a special kind of mob effect that is designed to be applied for one tick. Vanilla has two instant effects, Instant Health and Instant Harming.
@@ -15,7 +15,7 @@ Status effects, sometimes known as potion effects and referred to in-code as `Mo
 
 ## `MobEffect`s
 
-To create your own `MobEffect`, extend the `MobEffect` class:
+要创建你自己的 `MobEffect`, 继承 `MobEffect` 类:
 
 ```java
 public class MyMobEffect extends MobEffect {
@@ -53,7 +53,7 @@ public class MyMobEffect extends MobEffect {
 }
 ```
 
-Like all registry objects, `MobEffect`s must be [registered][registration], like so:
+Like all registry objects, `MobEffect`s 必须被注册 [registered][registration], 像这样:
 
 ```java
 // MOB_EFFECTS is a DeferredRegister<MobEffect>
@@ -90,9 +90,9 @@ public class MyMobEffect extends InstantenousMobEffect {
 }
 ```
 
-Then, [register][registration] your effect like normal.
+然后, [register][registration] your effect like normal.
 
-### Events
+### 事件
 
 Many effects have their logic applied in other places. For example, the levitation effect is applied in the living entity movement handler. For modded `MobEffect`s, it often makes sense to apply them in an [event handler][events]. NeoForge also provides a few events related to effects:
 
@@ -130,7 +130,7 @@ Several constructor overloads are available, omitting the last 1-5 parameters, r
 `MobEffectInstance`s are mutable. If you need a copy, call `new MobEffectInstance(oldInstance)`.
 :::
 
-### Using `MobEffectInstance`s
+### 使用 `MobEffectInstance`s
 
 A `MobEffectInstance` can be added to a `LivingEntity` like so:
 
@@ -151,7 +151,7 @@ livingEntity.removeEffect(MobEffects.REGENERATION);
 
 ## `Potion`s
 
-`Potion`s are created by calling the constructor of `Potion` with the `MobEffectInstance`s you want the potion to have. For example:
+`Potion`s are created by calling the constructor of `Potion` with the `MobEffectInstance`s you want the potion to have. 例如:
 
 ```java
 //POTIONS is a DeferredRegister<Potion>
@@ -165,11 +165,11 @@ public static final Holder<Potion> MY_POTION = POTIONS.register("my_potion", reg
 
 The name of the potion is the first constructor argument. It is used as the suffix for a translation key; for example, the long and strong potion variants in vanilla use this to have the same names as their base variant.
 
-The `MobEffectInstance` parameter of `new Potion` is a vararg. This means that you can add as many effects as you want to the potion. This also means that it is possible to create empty potions, i.e. potions that don't have any effects. Simply call `new Potion()` and you're done! (This is how vanilla adds the `awkward` potion, by the way.)
+`new Potion` 的 `MobEffectInstance` 参数是一个可变参数. 意味着 that you can add as many effects as you want to the potion. This also means that it is possible to create empty potions, i.e. potions that don't have any effects. Simply call `new Potion()` and you're done! (This is how vanilla adds the `awkward` potion, by the way.)
 
 The `PotionContents` class offers various helper methods related to potion items. Potion item store their `PotionContents` via `DataComponent#POTION_CONTENTS`.
 
-### Brewing
+### 酿造
 
 Now that your potion is added, potion items are available for your potion. However, there is no way to obtain your potion in survival, so let's change that!
 
