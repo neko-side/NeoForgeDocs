@@ -1,21 +1,21 @@
 import Card from "../theme/Card.tsx";
 
-# NeoForged Documentation
+# NeoForged 文档
 
-This is the official documentation for [NeoForged], the Minecraft modding API.
+这是 [NeoForged] 的非官方中文文档.
 
-This documentation is _only_ for NeoForged, **this is not a Java tutorial**.
+本文档 _仅仅_ 针对 NeoForged, **这不是 Java 教程**.
 
-If you would like to contribute to the docs, read [Contributing to the Docs][contributing].
+如果你希望贡献该文档, 阅读 [Contributing to the Docs][contributing].
 
 <div class="container">
     <div class="row">
         <div class="col category">
             <Card
-                title="NeoForge Documentation"
-                body="Learn how to create your first mod using NeoForge, and discover the vast APIs it provides."
+                title="NeoForge 文档"
+                body="学习如何用 NeoForge 创建你的第一个 Mod, 并探索它提供的大量 API."
                 link="/docs/gettingstarted/"
-                linkTitle="Get Started"
+                linkTitle="入门"
             />
         </div>
     </div>
@@ -40,7 +40,7 @@ If you would like to contribute to the docs, read [Contributing to the Docs][con
     <div class="row">
         <div class="col category">
             <Card
-                title="User Guide"
+                title="用户指南"
                 body="Learn how to install and use NeoForge in your client or server environment."
                 link="/user/docs/"
                 linkTitle="Get Started"
@@ -48,7 +48,7 @@ If you would like to contribute to the docs, read [Contributing to the Docs][con
         </div>
         <div class="col category">
             <Card
-                title="Modpack Development"
+                title="Modpack 开发"
                 body="Learn how to create and debug modpacks with NeoForge mods."
                 link="/modpack/docs/"
                 linkTitle="Get Started"
