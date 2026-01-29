@@ -1,19 +1,19 @@
 ---
 sidebar_position: 1
 ---
-# 注册
+# 注册表
 
 注册是记录 Mod 中的对象 (如 [物品][item], [方块][block], 实体 等) 并让它们被游戏知晓的过程. 注册非常重要, 因为如果不注册，游戏根本就不知道这些对象, 会导致未期待的表现和崩溃.
 
-A registry is, simply put, a wrapper around a map that maps registry names (read on) to registered objects, often called registry entries. Registry names must be unique within the same registry, but the same registry name may be present in multiple registries. The most common example for this are blocks (in the `BLOCKS` registry) that have an item form with the same registry name (in the `ITEMS` registry).
+一个注册表, simply put, a wrapper around a map that maps registry names (read on) to registered objects, often called registry entries. Registry names must be unique within the same registry, but the same registry name may be present in multiple registries. The most common example for this are blocks (in the `BLOCKS` registry) that have an item form with the same registry name (in the `ITEMS` registry).
 
-每一个注册的对象都有一个独一无二的名字, called its registry name. 这个名字被表示为 [`ResourceLocation`][resloc]. 例如, the registry name of the dirt block is `minecraft:dirt`, and the registry name of the zombie is `minecraft:zombie`. Modded objects will of course not use the `minecraft` 命名空间; their mod id will be used instead.
+每一个注册的对象都有一个独一无二的名字, called its registry name. 这个名字被表示为 [`ResourceLocation`][resloc]. 例如, 泥土的注册表名称为 `minecraft:dirt`, 僵尸的注册表名称为 `minecraft:zombie`. Mod 物品当然不使用 `minecraft` 命名空间; 而是使用 Mod ID.
 
 ## 原版 vs. Mod
 
 To understand some of the design decisions that were made in NeoForge's registry system, we will first look at how Minecraft does this. We will use the block registry as an example, as most other registries work the same way.
 
-Registries generally register [singletons][singleton]. This means that all registry entries exist exactly once. For example, all stone blocks you see throughout the game are actually the same stone block, displayed many times. If you need the stone block, you can get it by referencing the registered block instance.
+注册表通常注册[单例][singleton]. This means that all registry entries exist exactly once. For example, all stone blocks you see throughout the game are actually the same stone block, displayed many times. If you need the stone block, you can get it by referencing the registered block instance.
 
 Minecraft registers all blocks in the `Blocks` class. Through the `register` method, `Registry#register()` is called, with the block registry at `BuiltInRegistries.BLOCK` being the first parameter. After all blocks are registered, Minecraft performs various checks based on the list of blocks, for example the self check that verifies that all blocks have a model loaded.
 
@@ -21,19 +21,19 @@ The main reason all of this works is that `Blocks` is classloaded early enough b
 
 ## 注册的方法
 
-NeoForge 提供两种注册对象的方式: `DeferredRegister` 类和 `RegisterEvent` 类. Note that the former is a wrapper around the latter, and is recommended in order to prevent mistakes.
+NeoForge 提供两种注册对象的方式: `DeferredRegister` 类和 `RegisterEvent` 类. 前者是后者的一个封装, 为了防止你犯错，推荐使用前者.
 
 ### `DeferredRegister`
 
-We begin by creating our `DeferredRegister`:
+我们通过创建 `DeferredRegister` 开始:
 
 ```java
 public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(
-        // The registry we want to use.
-        // Minecraft's registries can be found in BuiltInRegistries, NeoForge's registries can be found in NeoForgeRegistries.
+        // 我们想用的注册表.
+        // Minecraft 的注册表可以在 BuiltInRegistries 中找到, NeoForge 的注册表可以在 NeoForgeRegistries 中找到.
         // Mods may also add their own registries, refer to the individual mod's documentation or source code for where to find them.
         BuiltInRegistries.BLOCKS,
-        // Our mod id.
+        // Mod ID.
         ExampleMod.MOD_ID
 );
 ```
@@ -42,7 +42,7 @@ We can then add our registry entries as static final fields using one of the fol
 
 ```java
 public static final DeferredHolder<Block, Block> EXAMPLE_BLOCK_1 = BLOCKS.register(
-        // Our registry name.
+        // 注册表名称.
         "example_block",
         // A supplier of the object we want to register.
         () -> new Block(...)

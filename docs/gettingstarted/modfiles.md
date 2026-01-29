@@ -1,31 +1,31 @@
 # Mod 文件
 
-The mod files are responsible for determining what mods are packaged into your JAR, what information to display within the 'Mods' menu, and how your mod should be loaded in the game.
+Mod 文件决定了哪些 Mod 被打包进 Jar 文件, 在 Mods 菜单中显示什么信息, 以及你的 Mod 如何被加载进游戏.
 
 ## `gradle.properties`
 
-The `gradle.properties` file holds various common properties of your mod, such as the mod id or mod version. During building, Gradle reads the values in these files and inlines them in various places, such as the [neoforge.mods.toml][neoforgemodstoml] file. This way, you only need to change values in one place, and they are then applied everywhere for you.
+`gradle.properties` 文件中有许多 Mod 的常用属性，比如 Mod ID 和 Mod 版本号. 在构建期间, Gradle 会读取这些文件中的值并将它们内联到许多地方, 例如 [neoforge.mods.toml][neoforgemodstoml] 文件. 通过这种方式, 你只需要修改一处的值, 这些值就会被应用到其他地方.
 
-Most values are also explained as comments in [the MDK's `gradle.properties` file][mdkgradleproperties].
+大部分值在 [the MDK's `gradle.properties` file][mdkgradleproperties] 中都有注释进行解释.
 
-| Property                  | Description                                                                                                                                                                                                                             | Example                                    |
+| 属性                  | 描述                                                                                                                                                                                                                             | 例子                                    |
 |---------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------|
-| `org.gradle.jvmargs`      | Allows you to pass extra JVM arguments to Gradle. Most commonly, this is used to assign more/less memory to Gradle. Note that this is for Gradle itself, not Minecraft.                                                                 | `org.gradle.jvmargs=-Xmx3G`                |
-| `org.gradle.daemon`       | Whether Gradle should use the daemon when building.                                                                                                                                                                                     | `org.gradle.daemon=false`                  |
+| `org.gradle.jvmargs`      | 允许你向 Gradle 传递额外的 JVM 参数. 通常, 这个参数被用于分配更多或更少的内存. 注意这是针对 Gradle 自身的, 不是 Minecraft.                                                                 | `org.gradle.jvmargs=-Xmx3G`                |
+| `org.gradle.daemon`       | Gradle 在构建时是否应该使用 Daemon.                                                                                                                                                                                     | `org.gradle.daemon=false`                  |
 | `org.gradle.parallel`     | Whether Gradle should fork JVMs to execute projects in parallel.                                                                                                                                                                                     | `org.gradle.parallel=false`                  |
 | `org.gradle.caching`      | Whether Gradle should reuse task outputs from previous builds.                                                                                                                                                                                     | `org.gradle.caching=false`                  |
 | `org.gradle.configuration-cache`  | Whether Gradle should reuse the build configuration from previous builds.                                                                                                                                                                                     | `org.gradle.configuration-cache=false`                  |
-| `org.gradle.debug`        | Whether Gradle is set to debug mode. Debug mode mainly means more Gradle log output. Note that this is for Gradle itself, not Minecraft.                                                                                                | `org.gradle.debug=false`                   |
-| `minecraft_version`       | The Minecraft version you are modding on. Must match with `neo_version`.                                                                                                                                                                | `minecraft_version=1.20.6`                 |
+| `org.gradle.debug`        | 是否设置 Gradle 为调试模式. 该模式主要用于显示更多日志. 注意这是针对 Gradle 自身的, 不是 Minecraft.                                                                                                | `org.gradle.debug=false`                   |
+| `minecraft_version`       | Mod 针对的 Minecraft 版本. 必须和 `neo_version` 匹配.                                                                                                                                                                | `minecraft_version=1.20.6`                 |
 | `minecraft_version_range` | The Minecraft version range this mod can use, as a [Maven Version Range][mvr]. Note that [snapshots, pre-releases and release candidates][mcversioning] are not guaranteed to sort properly, as they do not follow maven versioning.    | `minecraft_version_range=[1.20.6,1.21)`    |
-| `neo_version`             | The NeoForge version you are modding on. Must match with `minecraft_version`. See [NeoForge Versioning][neoversioning] for more information on how NeoForge versioning works.                                                           | `neo_version=20.6.62`                      |
-| `neo_version_range`       | The NeoForge version range this mod can use, as a [Maven Version Range][mvr].                                                                                                                                                           | `neo_version_range=[20.6.62,20.7)`         |
-| `mod_id`                  | See [The Mod ID][modid].                                                                                                                                                                                                                | `mod_id=examplemod`                        |
-| `mod_name`                | The human-readable display name of your mod. By default, this can only be seen in the mod list, however, mods such as [JEI][jei] prominently display mod names in item tooltips as well.                                                | `mod_name=Example Mod`                     |
+| `neo_version`             | 你正在使用的 NeoForge 版本. Must match with `minecraft_version`. See [NeoForge Versioning][neoversioning] for more information on how NeoForge versioning works.                                                           | `neo_version=20.6.62`                      |
+| `neo_version_range`       | 该 Mod 可使用的 NeoForge 版本, 见 [Maven Version Range][mvr].                                                                                                                                                           | `neo_version_range=[20.6.62,20.7)`         |
+| `mod_id`                  | 见 [The Mod ID][modid].                                                                                                                                                                                                                | `mod_id=examplemod`                        |
+| `mod_name`                | Mod 显示出来的人类可读名称. By default, this can only be seen in the mod list, however, mods such as [JEI][jei] prominently display mod names in item tooltips as well.                                                | `mod_name=Example Mod`                     |
 | `mod_license`             | The license your mod is provided under. It is suggested that this is set to the [SPDX identifier][spdx] you are using and/or a link to the license. You can visit https://choosealicense.com/ to help pick the license you want to use. | `mod_license=MIT`                          |
 | `mod_version`             | The version of your mod, shown in the mod list. See [the page on Versioning][versioning] for more information.                                                                                                                          | `mod_version=1.0`                          |
-| `mod_group_id`            | See [The Group ID][group].                                                                                                                                                                                                              | `mod_group_id=com.example.examplemod`      |
-| `mod_authors`             | The authors of the mod, shown in the mod list.                                                                                                                                                                                          | `mod_authors=ExampleModder`                |
+| `mod_group_id`            | 见 [The Group ID][group].                                                                                                                                                                                                              | `mod_group_id=com.example.examplemod`      |
+| `mod_authors`             | 显示在 Mod 列表中的 Mod 作者.                                                                                                                                                                                          | `mod_authors=ExampleModder`                |
 | `mod_description`         | The description of the mod, as a multiline string, shown in the mod list. Newline characters (`\n`) can be used and will be replaced properly.                                                                                          | `mod_description=Example mod description.` |
 
 ### Mod ID
@@ -40,12 +40,12 @@ Changing this property in the `gradle.properties` file will automatically apply 
 
 ### The Group ID
 
-While the `group` property in the `build.gradle` is only necessary if you plan to publish your mod to a maven, it is considered good practice to always properly set this. This is done for you through the `gradle.properties`'s `mod_group_id` property.
+虽然 `build.gradle` 文件中的 `group` 属性仅仅在你计划发布 Mod 到 Maven 时才有必要, 但你也总是应该正确设置该属性. This is done for you 通过 `gradle.properties` 的 `mod_group_id` 属性.
 
 The group id should be set to your top-level package. See [Packaging][packaging] for more information.
 
 ```properties
-# In your gradle.properties file
+# gradle.properties 文件中
 mod_group_id=com.example
 ```
 
