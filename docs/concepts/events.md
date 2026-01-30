@@ -6,17 +6,17 @@ import TabItem from '@theme/TabItem';
 
 # 事件
 
-One of NeoForge's main features is the event system. Events are fired for various things that happen in the game. For example, there are events for when the player right clicks, when a player or another entity jumps, when blocks are rendered, when the game is loaded, etc. A modder can subscribe event handlers to each of these events, and then perform their desired behavior inside these event handlers.
+事件系统是 NeoForge 的主要特点之一. 事件发生在游戏中的许多地方. 例如, 当玩家按下右键时, 当玩家或其他实体跳跃时, 当方块被渲染时, 当游戏被加载时, 等等. 模组开发者可以订阅这些事件中的每一个事件, 然后在这些事件的处理函数(Handler)中执行他们想要的代码.
 
-Events are fired on their respective event bus. The most important bus is `NeoForge.EVENT_BUS`, also known as the **game** bus. Besides that, during startup, a mod bus is spawned for each loaded mod and passed into the mod's constructor. Many mod bus events are fired in parallel (as opposed to main bus events that always run on the same thread), dramatically increasing startup speed. See [below][modbus] for more information.
+事件在它们对应的事件总线中被触发. 最重要的事件总线是 `NeoForge.EVENT_BUS`, 也叫做 **游戏** 总线. 并且, during startup, a mod bus is spawned for each loaded mod and passed into the mod's constructor. 许多 Mod 总线事件并行发生 (as opposed to main bus events that always run on the same thread), dramatically increasing startup speed. See [below][modbus] for more information.
 
-## Registering an Event Handler
+## 注册一个事件 Handler
 
 There are multiple ways to register event handlers. Common for all of those ways is that every event handler is a method with a single event parameter and no result (i.e. return type `void`).
 
 ### `IEventBus#addListener`
 
-The simplest way to register method handlers is by registering their method reference, like so:
+最简单的方式 to register method handlers is by registering their method reference, like so:
 
 ```java
 @Mod("yourmodid")
