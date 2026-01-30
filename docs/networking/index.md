@@ -1,13 +1,13 @@
 # Networking
 
-Communication between servers and clients is the backbone of a successful mod implementation.
+服务器和客户端之间的通信是一个成功 Mod 必不可少的一部分.
 
-There are two primary goals in network communication:
+网络通信中有以下两个主要目标:
 
-1. Making sure the client view is "in sync" with the server view
-    - The flower at coordinates (X, Y, Z) just grew
+1. 确保客户端视角与服务端视角 "同步"
+    - 位于 (X, Y, Z) 的花正在生长
 1. Giving the client a way to tell the server that something has changed about the player
-    - the player pressed a key
+    - 玩家按下了一个键
 
 The most common way to accomplish these goals is to pass messages between the client and the server. These messages will usually be structured, containing data in a particular arrangement, for easy sending and receiving.
 

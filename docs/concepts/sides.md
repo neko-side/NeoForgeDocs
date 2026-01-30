@@ -3,15 +3,15 @@ sidebar_position: 2
 ---
 # 端
 
-像许多其他程序一样, Minecraft 遵循客户端-服务端的概念, 客户端负责显示数据, 而服务端负责更新数据. When using these terms, we have a fairly intuitive understanding of what we mean... 对吗?
+像许多其他程序一样, Minecraft 遵循客户端-服务端的概念, 客户端负责显示数据, 而服务端负责更新数据. 看到这些术语，我们应当有一个相对直观的理解, 对吗?
 
-Turns out, not so much. A lot of the confusion stems from Minecraft having two different concepts of sides, depending on the context: the physical and the logical side.
+实则不然. A lot of the confusion stems from Minecraft having two different concepts of sides, 取决于具体的场景: 物理端和逻辑端.
 
 ## 逻辑端 vs. 物理端
 
 ### 物理端
 
-When you open your Minecraft launcher, select a Minecraft installation and press play, you boot up a **physical client**. The word "physical" is used here in the sense of "this is a client program". This especially means that client-side functionality, such as all the rendering stuff, is available here and can be used as needed. In contrast, the **physical server**, also known as dedicated server, is what opens when you launch a Minecraft server JAR. While the Minecraft server comes with a rudimentary GUI, it is missing all client-only functionality. Most notably, this means that various client classes are missing from the server JAR. Calling these classes on the physical server will lead to missing class errors, i.e. crashes, so we need to safeguard against this.
+当你打开 Minecraft 启动器, 选择一个 minecraft 版本并点击启动, 你实际上启动了一个 **物理客户端**. 这里的 "物理" 一词表明这是一个 "客户端程序". This especially means that client-side functionality, such as all the rendering stuff, is available here and can be used as needed. In contrast, the **physical server**, also known as 专有服务器, is what opens when you launch a Minecraft server JAR. While the Minecraft server comes with a rudimentary GUI, it is missing all 仅客户端功能. Most notably, this means that various client classes are missing from the server JAR. Calling these classes on the physical server will lead to missing class errors, i.e. crashes, so we need to safeguard against this.
 
 ### 逻辑端
 
@@ -19,15 +19,15 @@ The logical side is mainly focused on the internal program structure of Minecraf
 
 ### 区别是什么?
 
-The difference between physical and logical sides is best exemplified by two scenarios:
+以下两个场景非常适合解释物理端和逻辑端的区别:
 
-- The player joins a **multiplayer** world. This is fairly straightforward: The player's physical (and logical) client connects to a physical (and logical) server somewhere else - the player does not care where; so long as they can connect, that's all the client knows of, and all the client needs to know.
-- The player joins a **singleplayer** world. This is where things get interesting. The player's physical client spins up a logical server and then, now in the role of the logical client, connects to that logical server on the same machine. If you are familiar with networking, you can think of it as a connection to `localhost` (only conceptually; there are no actual sockets or similar involved).
+- 玩家加入了一个 **多人游戏** 世界. This is fairly straightforward: The player's physical (and logical) client connects to a physical (and logical) server somewhere else - the player does not care where; so long as they can connect, that's all the client knows of, and all the client needs to know.
+- 玩家加入了一个 **单人游戏** 世界. This is where things get interesting. The player's physical client spins up a logical server and then, now in the role of the logical client, connects to that logical server on the same machine. If you are familiar with networking, you can think of it as a connection to `localhost` (only conceptually; there are no actual sockets or similar involved).
 
 These two scenarios also show the main problem with this: If a logical server can work with your code, that alone doesn't guarantee that a physical server will be able to work with as well. This is why you should always test with dedicated servers to check for unexpected behavior. `NoClassDefFoundError`s and `ClassNotFoundException`s due to incorrect client and server separation are among the most common errors there are in modding. Another common mistake is working with static fields and accessing them from both logical sides; this is particularly tricky because there's usually no indication that something is wrong.
 
 :::tip
-If you need to transfer data from one side to another, you must [send a packet][networking].
+如果你需要将数据从一侧转移到另一侧, 你必须 [发送一个网络包][networking].
 :::
 
 In the NeoForge codebase, the physical side is represented by an enum called `Dist`, while the logical side is represented by an enum called `LogicalSide`.
